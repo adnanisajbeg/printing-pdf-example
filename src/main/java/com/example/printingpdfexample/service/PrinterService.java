@@ -1,5 +1,6 @@
 package com.example.printingpdfexample.service;
 
+import com.example.printingpdfexample.utils.PrinterUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class PrinterService {
     public List<String> showPrinters() {
-        // get list of all print services
-        PrintService[] services = PrinterJob.lookupPrintServices();
-        List<String> list = new ArrayList<String>();
-
-        for (int i = 0; i < services.length; i++) {
-            list.add(services[i].getName());
-        }
-
-        return list;
+        return PrinterUtils.getPrinterServiceNameList();
     }
 }
