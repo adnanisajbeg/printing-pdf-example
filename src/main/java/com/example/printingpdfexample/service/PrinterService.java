@@ -30,7 +30,7 @@ public class PrinterService {
     }
 
     public String print(MultipartFile file, String printerName) throws IOException {
-        var printDao = new PrintsDao().builder()
+        var printDao = PrintsDao.builder()
                 .status(PrintStatusEnum.IN_PROGRESS)
                 .fileName(file.getName())
                 .fileSize(file.getSize())
@@ -38,6 +38,7 @@ public class PrinterService {
                 .printerName(printerName)
                 .fileData(file.getBytes())
                 .build();
+        
         PrintsDao savedPrintsDao = printsRepository.save(printDao);
 
         PrintService service = PrinterUtils.findPrintService(printerName);
